@@ -1,0 +1,23 @@
+# отображение ошибок
+php_value display_errors on
+
+# память, выделяемая на выполнение скрипта
+php_value memory_limit 32M
+
+# Установка кодировки для функция обработки строк
+php_value mbstring.internal_encoding utf-8
+
+# Установка кодировки по умолчанию
+AddDefaultCharset utf-8
+
+# Запрет просмотра каталогов по урлу
+Options -Indexes
+
+# Настройка временной зоны
+php_value date.timezone "Europe/Moscow"
+
+<IfModule mod_rewrite.c>
+        RewriteEngine on
+        RewriteCond %{SCRIPT_FILENAME} !/(img|css)/.*
+        RewriteRule (.*) index.php [QSA,NC,NE]
+</IfModule>
