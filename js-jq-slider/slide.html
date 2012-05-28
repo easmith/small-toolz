@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+		<script type="text/javascript" src="js/spslider.js"></script>
+		<link href="css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+		<script>
+
+$().ready(function(){
+	$(".imgslider").spslider({
+		wRatio		: 1,
+		hRatio		: .7,
+		minImg		: 10,
+		maxImg		: 60,
+		minOpacity	: .5,
+		maxOpacity	: 1
+	});
+});
+			
+		</script>
+
+			<div class="imgslider">
+				<ul>
+					<li class="slide"><img src="http://cs303815.userapi.com/v303815532/1e1a/PrmTJt21Mms.jpg"></li>
+					<li class="slide"><img src="http://cs303815.userapi.com/v303815532/1e00/uT_gLlrLiGc.jpg"></li>
+					<li class="slide"><img src="http://cs303815.userapi.com/v303815532/1de8/KP5VjTgTZ0g.jpg"></li>
+					<li class="slide"><img src="http://cs303815.userapi.com/v303815532/1e08/3hue3CeSnKk.jpg"></li>
+				</ul>
+				<a href="javascript:;" class="arrow-left"></a>
+				<a href="javascript:;" class="arrow-right"></a>
+			</div>
+		</body>
+</html>
