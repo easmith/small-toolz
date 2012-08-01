@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+	<title>jQuery autocomlete ...</title>
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/ui/1.8.21/jquery-ui.min.js"></script>
+
+	<link href="http://code.jquery.com/ui/1.8.21/themes/base/jquery-ui.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+	<form action="" method="post" name="send" id="send">
+
+	<div id="form">
+
+
+	<script language="javascript" type="text/javascript">
+	$().ready(function(){
+		var autocompleteCache = [];
+		$("#city-ac").autocomplete({
+			minLength: 3,
+			delay: 500,
+			source: function(request, response) {
+				if ( request.term in autocompleteCache ) {
+					response( $.map( data, function( item ) {
+							return {
+								label: item[1] + (item[2] != "" ? ", " + item[2].replace("<br />", "") : ""),
+								value: item[0]
+							}
+						})
+					);
+				}
+
+				$.ajax({
+					url: location.href + "getvkcity.php?str=" + request.term,
+					dataType: "json",
+					success: function( data ) {
+						autocompleteCache[request.term] = data;
+						response( $.map( data, function( item ) {
+								return {
+									label: item[1] + (item[2] != "" ? ", " + item[2].replace("<br />", "") : ""),
+									value: item[0]
+								}
+							})
+						);
+					}
+				});
+			},
+			select : function(event, ui){
+				$("#city-ac-id").val(ui.item.value)
+				ui.item.value = ui.item.label;
+			},
+		});
+	});
+	</script>
+				<div id="form_legend">
+						Город:
+					</div>
+					<div class="input">
+						<input value="Москва" type="text" name="cname" id="city-ac">
+						<input value="1" type="hidden" name="cityId" id="city-ac-id">
+					</div>
+					<!-- end .form-->
+	</div>
+	</form>
+</body>
+</html>
